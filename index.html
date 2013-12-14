@@ -1,0 +1,44 @@
+<html>
+<div id="raw-graph"></div>
+<div id="reduced-graph"></div>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+
+// returns a debt graph with all cycles removed
+function getReducedGraph(graph) {
+  // TODO
+}
+
+// return the total debt people owe each other
+function getTotalDebt(graph) {
+  var totalDebt = 0;
+  for (var a in graph) {
+    for (var b in graph[a]) {
+      totalDebt += graph[a][b];
+    }
+  }
+  return totalDebt;
+}
+
+// wasup
+function renderMatrix(graph, el) {
+
+}
+
+// get graph and visualize them
+d3.json("./raw-graph.json", function(rawGraph) {
+
+  console.log(getTotalDebt(rawGraph));
+  console.log(rawGraph);
+
+  // create reduced graph where there are are no cycles of debt
+  var reducedGraph = reduceGraph(rawGraph);
+
+  // visualize both
+  renderMatrix(rawGraph, document.querySelector("#raw-graph"));
+  renderMatrix(rawGraph, document.querySelector("#reduced-graph"));
+
+});
+
+</script>
+</html>
